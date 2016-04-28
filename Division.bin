@@ -1,0 +1,42 @@
+;This program divides two operands stored in blocks of memory by the user.
+x3000:0011 000 000000000 		; The program will be stored, starting with location x3000.
+x3001:0011 000 000011111 		;STORE PREVIOUS CONTENTS OF R0				
+x3002:0011 001 000011111		;STORE PREVIOUS CONTENTS OF R1
+x3003:0011 010 000011111		;STORE PREVIOUS CONTENTS OF R2
+x3004:0011 011 000011111		;STORE PREVIOUS CONTENTS OF R3
+x3005:0011 111 000011111		;Store memory address of initial program
+x3006: 0101 000 000 1 00000 	; Clear R0, which will store the Dividend.
+x3007: 0101 001 001 1 00000 	; Clear R1, which will store the Divisor.
+x3008: 0101 010 010 1 00000		; Clear R2, Store Modulo
+x3009: 0101 011 011 1 00000 	; Clear R3, Quotient
+x300A: 0010 000 11110111		;LOAD x3100 into R0, PCoffset 9 address
+x300B: 0010 001 11110111 		;LOAD x3101 into R1, PCOffset 9 of current address(B)
+x300C: 1001 001 001 111111		;NOT R1 to get inverse
+x300D: 0001 001 001 1 00001		;Two's complement of B
+x300E: 0001 000 000 0 00 001 	;SUBTRACT A and B, store remainder in R2, (Both the Divident and Remainder)
+x300F: 0001 011 011 1 00001		;increment quotient every loop
+x3010: 0000 001 111111100 		; Loop back to x300D  while the dividend is positive
+x3011: 0000	010	00000110 		;If subtraction produces 0, then division is no longer neccessary, go to x3017
+x3012: 0001	010	000	000	001		; ADD R1 and R0, place in R2, this gets us the remainder
+x3013: 1001 010 010 111111		; NOT R1 to get inverse
+x3014: 0001 010 010 1 00001		; Two's complement of B
+x3015: 0011	010	11101110		;store remainder in memory location 3103
+x3016: 0011	011	11101110		;Store quotient in memory 
+X3017: 0000 111 000000010		;Branch to the LOADS
+x3018: 0011	010	11101011		;store remainder(R2), which has been initalized to 0, in 3103
+x3019: 0011 011	11101011		;store quotient (R3) in 3102
+x301A: 0010 000 000000110		;LOAD intial R0 value from memory
+x301B: 0010 001 000000110		;LOAD initial R1 value from memory
+x301C: 0010 010 000000110		;LOAD intial R2 value from memory	
+x301D: 0010 011 000000110		;Load intial R4 value from memory
+x301E: 0010 111 000000110		;Restore memory address of inital program in case it was lost during division
+x301F: 1100	000	111	000000		;return to where program was called. 
+
+
+
+
+
+
+
+
+

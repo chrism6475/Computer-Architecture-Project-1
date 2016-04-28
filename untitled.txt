@@ -1,0 +1,9 @@
+ORIG. x3000
+
+
+subtract Jan by Month, so 1-7, 6 
+
+
+x31F0 .FILL #2
+X31F1 .FILL #10
+X31F2 .FILL #1989
