@@ -1,3 +1,6 @@
+//authors: Christian Michel and Chris Benka
+
+
 ;This program divides two operands stored in blocks of memory by the user.
 x3000:0011 000 000000000 		; The program will be stored, starting with location x3000.
 x3001:0011 000 000011111 		;STORE PREVIOUS CONTENTS OF R0				
