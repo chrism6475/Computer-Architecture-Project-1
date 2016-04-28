@@ -1,3 +1,5 @@
+	//Authors: Christian Michel and Chris Benka
+	
 		.ORIG x3000
 		AND R0, #0
 		AND R1, #0
